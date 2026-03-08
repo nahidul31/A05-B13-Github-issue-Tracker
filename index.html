@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- tailwindcss and daisy ui-------->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <section id="login-page" class=" flex justify-center items-center h-svh">
+        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-7">
+            <!-- <legend class="">Login</legend> -->
+            <div class="flex flex-col justify-center items-center">
+                <img src="./assets/github-logo.png" alt="">
+                <h1 class="text-2xl font-semibold">Github Issue Tracker</h1>
+                <p>Sign in to mange your issue</p>
+            </div>
+
+            <label class="label">Email</label>
+            <input id="email" type="email" class="input" placeholder="Email" />
+
+            <label class="label">Password</label>
+            <input id="password" type="password" class="input" placeholder="Password" />
+
+            <button onclick="logInBtn()" class="btn btn-primary mt-4">Login</button>
+        </fieldset>
+
+    </section>
+    <!-- main page and navbar  -->
+    <section id="mainPage" class="hidden">
+        <!-- navbar ------------------------------------------------------------------------------------ -->
+        <div class="navbar bg-base-100 shadow-sm">
+            <div class="flex-1">
+                <a class="btn btn-ghost text-xl">daisyUI</a>
+            </div>
+            <div class="flex gap-2">
+                <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img alt="Tailwind CSS Navbar component"
+                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        </div>
+                    </div>
+                    <ul tabindex="-1"
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <li>
+                            <a class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                        <li><a>Settings</a></li>
+                        <li><a>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+<script src="./scripts/function.js"></script>
+
+</html>
