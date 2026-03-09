@@ -14,9 +14,9 @@
 </head>
 
 <body>
-    <section id="login-page" class=" flex justify-center items-center h-svh">
+    <!-- <section id="login-page" class=" flex justify-center items-center h-svh">
         <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-7">
-            <!-- <legend class="">Login</legend> -->
+           
             <div class="flex flex-col justify-center items-center">
                 <img src="./assets/github-logo.png" alt="">
                 <h1 class="text-2xl font-semibold">Github Issue Tracker</h1>
@@ -32,36 +32,59 @@
             <button onclick="logInBtn()" class="btn btn-primary mt-4">Login</button>
         </fieldset>
 
-    </section>
+    </section> -->
     <!-- main page and navbar  -->
-    <section id="mainPage" class="hidden">
+    <section id="mainPage" class="">
         <!-- navbar ------------------------------------------------------------------------------------ -->
         <div class="navbar bg-base-100 shadow-sm">
-            <div class="flex-1">
-                <a class="btn btn-ghost text-xl">daisyUI</a>
+            <div class="flex-1 flex gap-2">
+                <img class="h-10 w-10 " src="./assets//github-logo.png" alt="">
+                <h1 class="text-3xl font-bold">Github Issue Tracker</h1>
             </div>
             <div class="flex gap-2">
                 <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                <button class="btn btn-primary">Search</button>
+
+            </div>
+        </div>
+        <!-- //main page --------------------------------------------------------- -->
+        <div class="p-10 px-20 ">
+            <div>
+                <button onclick="allItemBtn()" class="btn btn-dash btn-primary">All</button>
+                <button onclick="openItemBtn()" class="btn btn-dash btn-primary">Open</button>
+                <button onclick="closedBtn()" class="btn btn-dash btn-primary">Closed</button>
+            </div>
+            <!-- // items count section -->
+            <div>
+                <div class="navbar bg-base-100 shadow-sm mt-4">
+                    <div class="flex-1 flex gap-2 items-center">
+                        <div class="bg-purple-100 rounded-full p-2">
+                            <img src="./assets/Aperture.png" alt="">
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold"><span id="issueCnt">0</span> issue</h1>
+                            <p>Track and mangae your project issue</p>
                         </div>
                     </div>
-                    <ul tabindex="-1"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li>
-                            <a class="justify-between">
-                                Profile
-                                <span class="badge">New</span>
-                            </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
+                    <div class="flex gap-4 items-center font-semibold">
+                        <p class="flex items-center gap-1">
+                            <span class="  bg-green-400  w-3 h-3  rounded-full"></span>
+                            <span>Open</span>
+                        </p>
+                        <p class="flex items-center gap-1">
+                            <span class="  bg-purple-500 w-3 h-3  rounded-full"></span>
+                            <span>Closed</span>
+                        </p>
+
+                    </div>
                 </div>
             </div>
+            <!-- //show cardss --------------------------- -->
+            <div id="show-cards" class="bg-slate-100 p-10 mt-5 grid grid-cols-4  gap-5 ">
+
+
+            </div>
+        </div>
         </div>
 
     </section>
