@@ -14,8 +14,10 @@
 // }
 
 // all item show ------------------------
-const allItemBtn = () => {
+const allItemBtn = (allbtn) => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+  activeStyle(allbtn);
+
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
@@ -92,7 +94,8 @@ const displayData = (data) => {
 
 // open itme btn----------------------------------------------------------
 
-const openItemBtn = () => {
+const openItemBtn = (opnBtn) => {
+  activeStyle(opnBtn);
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then((res) => res.json())
@@ -106,7 +109,8 @@ const openItemBtn = () => {
 };
 
 // closed btn---------------------------------------------
-const closedBtn = () => {
+const closedBtn = (clsBtn) => {
+  activeStyle(clsBtn);
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then((res) => res.json())
@@ -126,3 +130,16 @@ const issueCnt = (l) => {
   const issCtn = document.getElementById("issueCnt");
   issCtn.innerText = l;
 };
+
+//active style add in btnn--------------------------------------------------
+const activeStyle = (id) => {
+  const ar = ["allBtn", "openBtn", "clsBtn"];
+  ar.forEach((el) => {
+    const all = document.getElementById(el);
+    all.classList.remove("btn-primary");
+  });
+  const selected = document.getElementById(id);
+  selected.classList.add("btn-primary");
+};
+
+allItemBtn("allBtn");

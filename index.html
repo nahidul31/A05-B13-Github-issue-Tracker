@@ -50,9 +50,9 @@
         <!-- //main page --------------------------------------------------------- -->
         <div class="p-10 px-20 ">
             <div>
-                <button onclick="allItemBtn()" class="btn btn-dash btn-primary">All</button>
-                <button onclick="openItemBtn()" class="btn btn-dash btn-primary">Open</button>
-                <button onclick="closedBtn()" class="btn btn-dash btn-primary">Closed</button>
+                <button id="allBtn" onclick="allItemBtn('allBtn')" class="btn btn-primary">All</button>
+                <button id="openBtn" onclick="openItemBtn('openBtn')" class="btn ">Open</button>
+                <button id="clsBtn" onclick="closedBtn('clsBtn')" class="btn  ">Closed</button>
             </div>
             <!-- // items count section -->
             <div>
@@ -80,6 +80,7 @@
                 </div>
             </div>
             <!-- //show cardss --------------------------- -->
+
             <div id="show-cards" class="bg-slate-100 p-10 mt-5 grid grid-cols-4  gap-5 ">
 
 
