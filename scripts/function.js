@@ -13,6 +13,23 @@
 //   }
 // }
 
+//createElement ---------------
+const createEleArr = (labels) => {
+  const newElement = labels.map((label) => {
+    if (label === "bug") {
+      return `<div class="badge badge-soft badge-error">${label}</div>`;
+    } else if (label === "help wanted") {
+      return `<div class="badge badge-soft badge-warning">${label}</div>`;
+    } else if (label === "enhancement") {
+      return `<div class="badge badge-soft badge-success">${label}</div>`;
+    } else {
+      return `<div class="badge badge-soft badge-info">${label}</div>`;
+    }
+  });
+
+  return newElement.join(" ");
+};
+
 // all item show ------------------------
 const allItemBtn = (allbtn) => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
@@ -61,8 +78,7 @@ const displayData = (data) => {
                     <h2 class="card-title">${el.title}</h2>
                     <p>${el.description}</p>
                     <div class="card-actions border-b-1 pb-5 border-gray-400 ">
-                        <div class="badge badge-soft badge-error">Error</div>
-                        <div class="badge badge-soft badge-warning">Warning</div>
+                       ${createEleArr(el.labels)}
                     </div>
                     <p class="mt-1 text-gray-500">${el.author}</p>
                     <p class="text-gray-500">${el.createdAt}</p>
@@ -70,6 +86,7 @@ const displayData = (data) => {
                 </div>
             
     `;
+
     const badges = card.querySelector(".card-badge");
     const cardItem = card.querySelector(`.card-no`);
     if (badges && cardItem) {
@@ -143,6 +160,7 @@ const activeStyle = (id) => {
 };
 
 // show card modal using by id---------------------
+
 function loadDataById(id) {
   // console.log(id);
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
@@ -179,7 +197,7 @@ const showModalDiv = (data) => {
   details.innerHTML = `
     <h3 class="text-lg font-bold">${data.title}</h3>
                         <div class="flex gap-3 mt-2">
-                            <div class="badge badge-success">${data.status}</div>
+                            <div id='status-${data.ig}' class=" badge ">${data.status}</div>
                             <p class="flex items-center gap-1">
                                 <span class="  bg-gray-500  w-1 h-1 rounded-full"></span>
                                 <span>Open by ${data.author}</span>
@@ -191,8 +209,7 @@ const showModalDiv = (data) => {
 
                         </div>
                         <div class="mt-7">
-                            <div class="badge badge-soft badge-error">Error</div>
-                            <div class="badge badge-soft badge-warning">Warning</div>
+                          ${createEleArr(data.labels)}
 
                         </div>
                         <p class="mt-3 text-gray-500">${data.description}
@@ -204,10 +221,24 @@ const showModalDiv = (data) => {
                             </div>
                             <div class="space-y-1">
                                 <h1 class="text-gray-500 font-semibold">Assignee:</h1>
-                                <div class="badge badge-error">${data.priority}</div>
+                                <div id='card-prio-${data.id}' class="badge ">${data.priority}</div>
                             </div>
                         </div>
   
   `;
+
+  const prioBadge = document.getElementById(`card-prio-${data.id}`);
+
+  // console.log(badges.innerText);
+
+  if (`${data.priority}` === "high") {
+    prioBadge.classList.add("badge-error");
+  } else if (`${data.priority}` === "medium") {
+    prioBadge.classList.add("badge-warning");
+  }
+  const statusStl = document.getElementById(`status-${data.ig}`);
+  if (`${data.status}` === "open") {
+    statusStl.classList.add("badge-success");
+  } else statusStl.classList.add("badge-primary");
 };
 allItemBtn("allBtn");
