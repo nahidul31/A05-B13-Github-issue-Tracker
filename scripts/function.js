@@ -135,9 +135,8 @@ const closedBtn = (clsBtn) => {
       const arr = data.data.filter((issue) => issue.status === "closed");
       const l = arr.length;
 
-      // const displayDiv = document.querySelectorAll("disDiv");
       issueCnt(l);
-      // displayDiv.innerHTML = " ";
+
       displayData(arr);
     });
 };
@@ -148,7 +147,7 @@ const issueCnt = (l) => {
   issCtn.innerText = l;
 };
 
-//active style add in btnn--------------------------------------------------
+//active style add in btnn-----------------------------------------------------------------------
 const activeStyle = (id) => {
   const ar = ["allBtn", "openBtn", "clsBtn"];
   ar.forEach((el) => {
@@ -159,7 +158,7 @@ const activeStyle = (id) => {
   selected.classList.add("btn-primary");
 };
 
-// show card modal using by id---------------------
+// show card modal using by id-------------------------------------------------------------------------
 
 function loadDataById(id) {
   // console.log(id);
@@ -174,25 +173,6 @@ function loadDataById(id) {
 const showModalDiv = (data) => {
   const details = document.getElementById("modal-details");
   document.getElementById("my_modal_1").showModal();
-
-  //   {
-  //   "status": "success",
-  //   "message": "Issue fetched successfully",
-  //   "data": {
-  //     "id": 33,
-  //     "title": "Add bulk operations support",
-  //     "description": "Allow users to perform bulk actions like delete, update status on multiple items at once.",
-  //     "status": "open",
-  //     "labels": [
-  //       "enhancement"
-  //     ],
-  //     "priority": "low",
-  //     "author": "bulk_barry",
-  //     "assignee": "",
-  //     "createdAt": "2024-02-02T10:00:00Z",
-  //     "updatedAt": "2024-02-02T10:00:00Z"
-  //   }
-  // }
 
   details.innerHTML = `
     <h3 class="text-lg font-bold">${data.title}</h3>
@@ -241,4 +221,20 @@ const showModalDiv = (data) => {
     statusStl.classList.add("badge-success");
   } else statusStl.classList.add("badge-primary");
 };
+
+// search value------------------------------------------------
+const searchItem = (id) => {
+  const searchValue = document.getElementById(id);
+  const word = searchValue.value.replace(/\s+/g, "").toLowerCase();
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${word}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      const l = data.data.length;
+
+      issueCnt(l);
+      displayData(data.data);
+    });
+};
+
 allItemBtn("allBtn");
