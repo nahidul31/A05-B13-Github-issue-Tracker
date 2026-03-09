@@ -53,7 +53,7 @@ const displayData = (data) => {
     card.innerHTML = `
      
 
-                <div id='card-on-${el.id}' class="card-no card-body bg-white rounded-2xl  border-t-4  h-full">
+                <div onclick="loadDataById(${el.id})" id='card-on-${el.id}' class="card-no card-body bg-white rounded-2xl  border-t-4  h-full">
                     <div>
                     
                         <div id='card-badge-${el.id}' class= "card-badge badge badge-soft ">${el.priority}</div>
@@ -142,4 +142,72 @@ const activeStyle = (id) => {
   selected.classList.add("btn-primary");
 };
 
+// show card modal using by id---------------------
+function loadDataById(id) {
+  // console.log(id);
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      showModalDiv(data.data);
+    });
+}
+
+const showModalDiv = (data) => {
+  const details = document.getElementById("modal-details");
+  document.getElementById("my_modal_1").showModal();
+
+  //   {
+  //   "status": "success",
+  //   "message": "Issue fetched successfully",
+  //   "data": {
+  //     "id": 33,
+  //     "title": "Add bulk operations support",
+  //     "description": "Allow users to perform bulk actions like delete, update status on multiple items at once.",
+  //     "status": "open",
+  //     "labels": [
+  //       "enhancement"
+  //     ],
+  //     "priority": "low",
+  //     "author": "bulk_barry",
+  //     "assignee": "",
+  //     "createdAt": "2024-02-02T10:00:00Z",
+  //     "updatedAt": "2024-02-02T10:00:00Z"
+  //   }
+  // }
+
+  details.innerHTML = `
+    <h3 class="text-lg font-bold">${data.title}</h3>
+                        <div class="flex gap-3 mt-2">
+                            <div class="badge badge-success">${data.status}</div>
+                            <p class="flex items-center gap-1">
+                                <span class="  bg-gray-500  w-1 h-1 rounded-full"></span>
+                                <span>Open by ${data.author}</span>
+                            </p>
+                            <p class="flex items-center gap-1">
+                                <span class="  bg-gray-500  w-1 h-1  rounded-full"></span>
+                                <span>${data.createdAt}</span>
+                            </p>
+
+                        </div>
+                        <div class="mt-7">
+                            <div class="badge badge-soft badge-error">Error</div>
+                            <div class="badge badge-soft badge-warning">Warning</div>
+
+                        </div>
+                        <p class="mt-3 text-gray-500">${data.description}
+                        </p>
+                        <div class="flex bg-gray-100 gap-20 p-5 px-8 mt-7 rounded-xl">
+                            <div class="space-y-1">
+                                <h1 class="text-gray-500 font-semibold ">Assignee:</h1>
+                                <p class="font-bold">${data.author}</p>
+                            </div>
+                            <div class="space-y-1">
+                                <h1 class="text-gray-500 font-semibold">Assignee:</h1>
+                                <div class="badge badge-error">${data.priority}</div>
+                            </div>
+                        </div>
+  
+  `;
+};
 allItemBtn("allBtn");
